@@ -1,0 +1,32 @@
+language: c
+#######################################################################################
+os:
+  - linux
+  
+addons:
+  apt:
+    packages:
+      - curl
+
+#######################################################################################
+
+
+before_install:
+
+  - sudo apt-get update -qq
+  
+  - git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8 ~/arm-eabi-4.8/
+
+#######################################################################################
+
+
+script:  
+  - export CROSS_COMPILE=~/arm-eabi-4.8/bin/arm-eabi-
+  - export KBUILD_BUILD_USER="Manish4586"
+  - export KBUILD_BUILD_HOST="manish-4586
+  - export ARCH=arm
+  - make  a56djdugl_defconfig
+  - make -j2
+
+after_success:
+  - curl --upload-file arch/arm/boot/Image https://transfer.sh/lyf_kernel
