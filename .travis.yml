@@ -28,8 +28,8 @@ script:
   - export ARCH=arm
   - export KBUILD_BUILD_USER="Manish4586"
   - export KBUILD_BUILD_HOST="Manish_4586"
-  - make a56djdugl_defconfig
-  - make -j2
+  - make a56djdugl_defconfig -O=out/
+  - make -j2 -O=out/
 
 after_success:
-  - curl --upload-file arch/arm/boot/Image https://transfer.sh/a56dj_kernel
+  - curl --upload-file out/arch/arm/boot/Image https://transfer.sh/a56dj_kernel
