@@ -23,7 +23,7 @@ before_install:
 script:  
   - export CROSS_COMPILE=~/arm-eabi-4.8/bin/arm-eabi-
   - export KBUILD_BUILD_USER="Manish4586"
-  - export KBUILD_BUILD_HOST="Manish_4586
+  - export KBUILD_BUILD_HOST="Manish_4586"
   - export ARCH=arm
   - make  a56djdugl_defconfig
   - make -j2
