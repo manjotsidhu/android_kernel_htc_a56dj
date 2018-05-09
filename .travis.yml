@@ -15,19 +15,20 @@ before_install:
 
   - sudo apt-get update -qq
   
-  - git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8 ~/arm-eabi-4.8/
+  - git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6 arm-eabi-4.6
   
-  - sudo chmod -R a+x * && sudo chmod -R a+x ~/arm-eabi-4.8
+  - sudo chmod -R a+x *
 
 #######################################################################################
 
 
 script:  
-  - export CROSS_COMPILE=~/arm-eabi-4.8/bin/arm-eabi-
+  - export PATH=$PWD/arm-eabi-4.6/bin:$PATH
+  - export CROSS_COMPILE=arm-eabi
+  - export ARCH=arm
   - export KBUILD_BUILD_USER="Manish4586"
   - export KBUILD_BUILD_HOST="Manish_4586"
-  - export ARCH=arm
-  - make  a56djdugl_defconfig
+  - make a56djdugl_defconfig
   - make -j2
 
 after_success:
