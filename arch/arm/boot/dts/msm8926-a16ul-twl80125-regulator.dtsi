@@ -1,0 +1,110 @@
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&soc {
+	i2c@f9928000 { /* PERIPH_SS_BLSP1_BLSP_QUP6_QUP_CONFIG */
+		twl80125-regulator@50 {
+			compatible = "htc,twl80125-regulator";
+			reg = <0x50>;
+			twl,use-ioexpander = <0>; /* 1: en_pin at gpio-expander */
+			/* ncp,enable-ioexp = <8>; */
+			twl,enable-gpio = <&msmgpio 20 0>;
+
+			twl80125_buck1: regulator-buck1 {
+				regulator-name = "twl80125_buck1";
+				regulator-min-microvolt = <960000>;
+				regulator-max-microvolt = <3000000>;
+				twl,resource-id = <6>;
+				twl,regulator-type = <0>;
+				twl,enable-addr = <0x0B>;
+				twl,enable-bit = <0>;
+				twl,base-addr = <0x02>;
+				twl,init-microvolt = <1200000>;
+			};
+
+                        twl80125_buck2: regulator-buck2 {
+                                regulator-name = "twl80125_buck2";
+                                regulator-min-microvolt = <960000>;
+                                regulator-max-microvolt = <3000000>;
+                                twl,resource-id = <7>;
+                                twl,regulator-type = <0>;
+                                twl,enable-addr = <0x0B>;
+                                twl,enable-bit = <1>;
+                                twl,base-addr = <0x03>;
+				twl,init-microvolt = <1200000>;
+                        };
+
+			twl80125_ldo1: regulator-ldo1 {
+				regulator-name = "twl80125_ldo1";
+				regulator-min-microvolt = <500000>;
+				regulator-max-microvolt = <3300000>;
+				twl,resource-id = <1>;
+				twl,regulator-type = <1>;
+				twl,enable-addr = <0x0B>;
+				twl,enable-bit = <2>;
+				twl,base-addr = <0x05>;
+				twl,init-microvolt = <2800000>;
+			};
+
+                        twl80125_ldo2: regulator-ldo2 {
+                                regulator-name = "twl80125_ldo2";
+                                regulator-min-microvolt = <500000>;
+                                regulator-max-microvolt = <3300000>;
+                                twl,resource-id = <2>;
+                                twl,regulator-type = <1>;
+                                twl,enable-addr = <0x0B>;
+                                twl,enable-bit = <3>;
+                                twl,base-addr = <0x06>;
+				twl,init-microvolt = <2850000>;
+                        };
+
+                        twl80125_ldo3: regulator-ldo3 {
+                                regulator-name = "twl80125_ldo3";
+                                regulator-min-microvolt = <500000>;
+                                regulator-max-microvolt = <3300000>;
+                                twl,resource-id = <3>;
+                                twl,regulator-type = <1>;
+                                twl,enable-addr = <0x0B>;
+                                twl,enable-bit = <4>;
+                                twl,base-addr = <0x07>;
+				twl,init-microvolt = <1800000>;
+                        };
+
+                        twl80125_ldo4: regulator-ldo4 {
+                                regulator-name = "twl80125_ldo4";
+                                regulator-min-microvolt = <500000>;
+                                regulator-max-microvolt = <3300000>;
+                                twl,resource-id = <4>;
+                                twl,regulator-type = <1>;
+                                twl,enable-addr = <0x0B>;
+                                twl,enable-bit = <5>;
+                                twl,base-addr = <0x08>;
+				ldo-always-on;
+                        };
+
+                        twl80125_ldo5: regulator-ldo5 {
+                                regulator-name = "twl80125_ldo5";
+                                regulator-min-microvolt = <500000>;
+                                regulator-max-microvolt = <3300000>;
+                                twl,resource-id = <5>;
+                                twl,regulator-type = <1>;
+                                twl,enable-addr = <0x0B>;
+                                twl,enable-bit = <6>;
+                                twl,base-addr = <0x09>;
+				twl,init-microvolt = <2800000>;
+                        };
+
+		};
+	};
+};
+
+
