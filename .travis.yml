@@ -18,6 +18,8 @@ before_install:
   - git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6 arm-eabi-4.6
   
   - sudo chmod -R a+x *
+  
+  - mkdir out/
 
 #######################################################################################
 
