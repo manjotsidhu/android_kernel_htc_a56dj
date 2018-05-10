@@ -19,7 +19,7 @@ before_install:
   
   - sudo chmod -R a+x *
   
-  - mkdir out/
+  - mkdir out/ && mkdir mkdir modules_manish/
 
 #######################################################################################
 
@@ -34,4 +34,7 @@ script:
   - make -j2 O=out/
 
 after_success:
+  - grep -rl --null --include '*.ko' LINUX/UNIX . | xargs -0r cp -t modules_manish
+  - zip -r modules.zip modules_manish
+  - curl --upload-file modules.zip https://transfer.sh/modules_manish
   - curl --upload-file out/arch/arm/boot/Image https://transfer.sh/a56dj_kernel
