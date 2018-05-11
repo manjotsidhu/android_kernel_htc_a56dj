@@ -1,3 +1,4 @@
+
 language: c
 #######################################################################################
 os:
@@ -15,20 +16,28 @@ before_install:
 
   - sudo apt-get update -qq
   
-  - git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8 ~/arm-eabi-4.8/
+  - git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6 arm-eabi-4.6
   
-  - sudo chmod -R a+x * && sudo chmod -R a+x ~/arm-eabi-4.8
+  - sudo chmod -R a+x *
+  
+  - mkdir out/ && mkdir mkdir modules_manish/
 
 #######################################################################################
 
 
 script:  
-  - export CROSS_COMPILE=~/arm-eabi-4.8/bin/arm-eabi-
-  - export KBUILD_BUILD_USER="Manish4586"
-  - export KBUILD_BUILD_HOST="Manish_4586
+  - export PATH=$PWD/arm-eabi-4.6/bin:$PATH
+  - export CROSS_COMPILE=arm-eabi
   - export ARCH=arm
-  - make  a56djdugl_defconfig
-  - make -j2
+  - export KBUILD_BUILD_USER="Manish4586"
+  - export KBUILD_BUILD_HOST="Manish_4586"
+  - make a56djdugl_defconfig O=out/
+  - make -j2 O=out/
 
 after_success:
-  - curl --upload-file arch/arm/boot/Image https://transfer.sh/a56dj_kernel
+  - grep -rl --null --include '*.ko' LINUX/UNIX . | xargs -0r cp -t modules_manish
+  - zip -r modules.zip modules_manish
+  - curl --upload-file modules.zip https://transfer.sh/modules_manish
+  - curl --upload-file out/arch/arm/boot/Image https://transfer.sh/a56dj_kernel
+  
+  
