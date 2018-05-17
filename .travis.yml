@@ -31,6 +31,8 @@ script:
   - export ARCH=arm
   - export KBUILD_BUILD_USER="Manish4586"
   - export KBUILD_BUILD_HOST="Manish_4586"
+  - make O=out clean
+  - make O=out mrproper
   - make a56djdugl_defconfig O=out/
   - make -j2 O=out/
 
