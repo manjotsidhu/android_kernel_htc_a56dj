@@ -37,7 +37,7 @@ script:
 after_success:
   - grep -rl --null --include '*.ko' LINUX/UNIX . | xargs -0r cp -t modules_manish
   - echo "--> Making Flashable Zip"
-  - zip -r modules.zip 
+  - zip -r modules.zip modules_manish
   - curl --upload-file modules.zip https://transfer.sh/modules_manish.zip
   - curl --upload-file out/arch/arm/boot/Image https://transfer.sh/a56dj_kernel
   
