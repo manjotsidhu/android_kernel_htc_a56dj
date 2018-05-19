@@ -31,15 +31,14 @@ script:
   - export ARCH=arm
   - export KBUILD_BUILD_USER="Manish4586"
   - export KBUILD_BUILD_HOST="Manish_4586"
-  - make O=out clean
-  - make O=out mrproper
   - make a56djdugl_defconfig O=out/
   - make -j2 O=out/
 
 after_success:
   - grep -rl --null --include '*.ko' LINUX/UNIX . | xargs -0r cp -t modules_manish
-  - zip -r modules.zip modules_manish
-  - curl --upload-file modules.zip https://transfer.sh/modules_manish
+  - echo "--> Making Flashable Zip"
+  - zip -r modules.zip 
+  - curl --upload-file modules.zip https://transfer.sh/modules_manish.zip
   - curl --upload-file out/arch/arm/boot/Image https://transfer.sh/a56dj_kernel
   
   
